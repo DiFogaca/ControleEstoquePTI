@@ -27,30 +27,24 @@ class Program
             Console.WriteLine($"[0] Sair              |\n{bordaBaixo}" + "|");
             Console.Write("Escolha uma opção: ");   //usuário insere a opção desejada
             opcao = Console.ReadLine(); //programa lê a opção digitada
-            if (!int.TryParse(opcao, out int opcaoInt) || opcaoInt < 0 || opcaoInt > 5)
-            {
-                Console.WriteLine("\nOpção inválida! Por favor, digite um número entre 0 e 5.\n");
-            }
-            else
-            {
-                switch (opcaoInt) //executa a ação de acordo com a opção
+                switch (opcao) //executa a ação de acordo com a opção
                 {
-                    case 1: //se a opção for 1
+                    case "1": //se a opção for 1
                         estoque.Novo(); //chama o método Novo do objeto estoque
                         break;
-                    case 2: //se a opção for 2
+                    case "2": //se a opção for 2
                         estoque.Listar(); //chama o método Listar do objeto estoque
                         break;
-                    case 3: //se a opção for 3
+                    case "3": //se a opção for 3
                         estoque.Remover(); //chama o método Remover do objeto estoque
                         break;
-                    case 4: //se a opção for 4
+                    case "4": //se a opção for 4
                         estoque.Entrada(); //chama o método Entrada do objeto estoque
                         break;
-                    case 5: //se a opção for 5
+                    case "5": //se a opção for 5
                         estoque.Saida(); //chama o método Saida do objeto estoque
                         break;
-                    case 0: //se a opção for 0
+                    case "0": //se a opção for 0
                         Console.WriteLine("\nEntão é isso, vou Fechar, Até a próxima!"); //chama o método de Sair do Programa
                         Console.WriteLine("Pressione qualquer tecla para sair...");
                         Console.ReadKey();
@@ -59,8 +53,6 @@ class Program
                         Console.WriteLine("\nOpção inválida! Por favor, digite um número entre 0 e 5.\n"); //mensagem de aviso para usuário
                         break;
                 }
-                
-            }
         } while (opcao != "0");
     }
 
