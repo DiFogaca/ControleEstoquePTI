@@ -52,6 +52,8 @@ class Program
                         break;
                     case 0: //se a opção for 0
                         Console.WriteLine("\nEntão é isso, vou Fechar, Até a próxima!"); //chama o método de Sair do Programa
+                        Console.WriteLine("Pressione qualquer tecla para sair...");
+                        Console.ReadKey();
                         break;
                     default: //se a opção não for nenhuma das anteriores
                         Console.WriteLine("\nOpção inválida! Por favor, digite um número entre 0 e 5.\n"); //mensagem de aviso para usuário
