@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 class Program
 {
@@ -91,7 +92,7 @@ class Program
         }
         public override string ToString()
         {
-            return $"Título: {this.Titulo}, Autor(a): {this.Autor}, Editora: {this.Editora}, Gênero: {this.Genero}, Preço: ({this.Preco:C}), - {this.Estoque} em Estoque.";
+            return $"Título: {this.Titulo}, Autor(a): {this.Autor}, Editora: {this.Editora}, Gênero: {this.Genero}, Preço: ({this.Preco.ToString("C", new CultureInfo("pt-BR"))}) - {this.Estoque} em Estoque.";
         }
     }
     class Estoque
@@ -185,7 +186,12 @@ class Program
                 if (livro.GetTitulo() == titulo) //compara o título do produto com o título digitado
                 {
                     Console.Write("\nDigite a quantidade que deseja adicionar ao estoque: \n");
-                    int quantidade = int.Parse(Console.ReadLine());
+                    int quantidade;
+                    while (!Int32.TryParse(Console.ReadLine(), out quantidade)) //valida a entrada do usuário
+                    {
+                        Console.WriteLine("\nEntrada inválida! Digite um número de quantidade válido.\n");
+                        Console.Write("\nDigite a quantidade que deseja adicionar ao estoque: \n");
+                    }
                     livro.SetEstoque(livro.GetEstoque() + quantidade); //atualiza o estoque do produto
                     encontrado = true;
                     Console.WriteLine("\nEntrada de estoque realizada com sucesso!\n");
@@ -197,6 +203,7 @@ class Program
                 Console.WriteLine("\nProduto não encontrado!\n");
             }
         }
+
         public void Saida() //Método que realiza uma saída de estoque de um produto
         {
             Console.Write("\nDigite o título do produto que deseja dar saída: \n");
@@ -207,7 +214,12 @@ class Program
                 if (livro.GetTitulo() == titulo) //compara o título do produto com o título digitado
                 {
                     Console.Write("\nDigite a quantidade que deseja retirar do estoque: \n");
-                    int quantidade = int.Parse(Console.ReadLine());
+                    int quantidade;
+                    while (!Int32.TryParse(Console.ReadLine(), out quantidade)) //valida a entrada do usuário
+                    {
+                        Console.WriteLine("\nEntrada inválida! Digite um número de quantidade válido.\n");
+                        Console.Write("\nDigite a quantidade que deseja retirar do estoque: \n");
+                    }
                     if (quantidade <= livro.GetEstoque()) //verifica se há estoque suficiente
                     {
                         livro.SetEstoque(livro.GetEstoque() - quantidade); //atualiza o estoque do produto
