@@ -120,9 +120,30 @@ class Program
             string editora = Console.ReadLine();
             Console.Write("Gênero: ");
             string genero = Console.ReadLine();
-            Console.Write("Preço: ");
-            double preco = double.Parse(Console.ReadLine());
+            
+            double preco = 0; //inicializa a variável estoque com um valor padrão
+            bool precoValido = false;
+            while (!precoValido)
+            {
+                Console.Write("Preço: ");
+                precoValido = double.TryParse(Console.ReadLine(), out preco);
+                if (!precoValido)
+                {
+                    Console.WriteLine("Valor inválido. Tente novamente.");
+                }
+            }
+            
             int estoque = 0; //inicializa a variável estoque com um valor padrão
+            bool estoqueValido = false;
+            while (!estoqueValido)
+            {
+                Console.Write("Estoque: ");
+                estoqueValido = int.TryParse(Console.ReadLine(), out estoque);
+                if (!estoqueValido)
+                {
+                    Console.WriteLine("Valor inválido. Tente novamente.");
+                }
+            } 
             Livro livro = new Livro(titulo, autor, editora, genero, preco, estoque); //cria um objeto da classe Livro
             this.produtos.Add(livro); //adiciona o objeto à lista
             Console.WriteLine("\nProduto cadastrado com sucesso!\n");
