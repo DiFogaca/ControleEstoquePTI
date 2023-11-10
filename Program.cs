@@ -6,8 +6,14 @@ class Program
 {
     static void Main(string[] args)
     {
+        Menu();
+    }
+
+    static void Menu()
+    {
         Estoque estoque = new Estoque(); //cria um objeto da classe Estoque
-        string opcao = null; //variável que armazena a opção escolhida pelo usuário
+        string opcao; //variável que armazena a opção escolhida pelo usuário
+
         do //repete até que a opção seja zero
         {
             int numTracos = 22; //Definindo a quantidade de traços para as bordas do programa
@@ -28,36 +34,41 @@ class Program
             Console.WriteLine($"[0] Sair              |\n{bordaBaixo}" + "|");
             Console.Write("Escolha uma opção: ");   //usuário insere a opção desejada
             opcao = Console.ReadLine(); //programa lê a opção digitada
-                switch (opcao) //executa a ação de acordo com a opção
-                {
-                    case "1": //se a opção for 1
-                        estoque.Novo(); //chama o método Novo do objeto estoque
-                        break;
-                    case "2": //se a opção for 2
-                        estoque.Listar(); //chama o método Listar do objeto estoque
-                        break;
-                    case "3": //se a opção for 3
-                        estoque.Remover(); //chama o método Remover do objeto estoque
-                        break;
-                    case "4": //se a opção for 4
-                        estoque.Entrada(); //chama o método Entrada do objeto estoque
-                        break;
-                    case "5": //se a opção for 5
-                        estoque.Saida(); //chama o método Saida do objeto estoque
-                        break;
-                    case "0": //se a opção for 0
-                        Console.WriteLine("\nEntão é isso, vou Fechar, Até a próxima!"); //chama o método de Sair do Programa
-                        Console.WriteLine("Pressione qualquer tecla para sair...");
-                        Console.ReadKey();
-                        break;
-                    default: //se a opção não for nenhuma das anteriores
-                        Console.WriteLine("\nOpção inválida! Por favor, digite um número entre 0 e 5.\n"); //mensagem de aviso para usuário
-                        break;
-                }
+            switch (opcao) //executa a ação de acordo com a opção
+            {
+                case "1": //se a opção for 1
+                    estoque.Novo(); //chama o método Novo do objeto estoque
+                    break;
+                case "2": //se a opção for 2
+                    estoque.Listar(); //chama o método Listar do objeto estoque
+                    break;
+                case "3": //se a opção for 3
+                    estoque.Remover(); //chama o método Remover do objeto estoque
+                    break;
+                case "4": //se a opção for 4
+                    estoque.Entrada(); //chama o método Entrada do objeto estoque
+                    break;
+                case "5": //se a opção for 5
+                    estoque.Saida(); //chama o método Saida do objeto estoque
+                    break;
+                case "0": //se a opção for 0
+                    Console.WriteLine("\nEntão é isso, vou Fechar, Até a próxima!"); //chama o método de Sair do Programa
+                    Console.WriteLine("Pressione qualquer tecla para sair...");
+                    Console.ReadKey();
+                    break;
+                default: //se a opção não for nenhuma das anteriores
+                    Console.WriteLine("\nOpção inválida! Por favor, digite um número entre 0 e 5.\n"); //mensagem de aviso para usuário
+                    break;
+            }
         } while (opcao != "0");
     }
 
-    public class Livro //classe com as propriedades do programa de estoque, como o construtor e os metodos
+
+
+
+
+
+public class Livro //classe com as propriedades do programa de estoque, como o construtor e os metodos
     {
         //Propriedades da classe Livro
         public string Titulo { get; set; }
@@ -137,7 +148,7 @@ class Program
                     Console.WriteLine("Valor inválido. Tente novamente.");
                 }
             } 
-            Livro livro = new Livro(titulo, autor, editora, genero, preco, estoque); //cria um objeto da classe Livro
+            Livro livro = new Livro($"{titulo}", $"{autor}", $"{editora}", $"{genero}", preco, estoque); //cria um objeto da classe Livro
             this.produtos.Add(livro); //adiciona o objeto à lista
             Console.WriteLine("\nProduto cadastrado com sucesso!\n");
         }
@@ -173,7 +184,8 @@ class Program
             }
             if (!encontrado) //se o produto não foi encontrado
             {
-                Console.WriteLine("\nProduto não encontrado!\n");
+                Console.WriteLine("\nNenhum Produto Cadastrado com esse título.\n");
+                Console.WriteLine("Por favor tente novamente.\n________________________________");
             }
         }
         public void Entrada() //Método que realiza uma entrada de estoque de um produto
@@ -200,7 +212,8 @@ class Program
             }
             if (!encontrado) // se o produto não foi encontrado
             {
-                Console.WriteLine("\nProduto não encontrado!\n");
+                Console.WriteLine("\nNenhum Produto Cadastrado com esse título.\n");
+                Console.WriteLine("Por favor tente novamente.\n________________________________");
             }
         }
 
@@ -228,14 +241,15 @@ class Program
                     }
                     else //se não há estoque suficiente
                     {
-                        Console.WriteLine("\nEstoque insuficiente!\n");
+                        Console.WriteLine("\nEstoque insuficiente!\n________________________________");
+                        return;
                     }
-                    break;
                 }
             }
             if (!encontrado) //se o produto não foi encontrado
             {
-                Console.WriteLine("\nProduto não encontrado!\n");
+                Console.WriteLine("\nNenhum Produto Cadastrado com esse título.\n");
+                Console.WriteLine("Por favor tente novamente.\n________________________________");
             }
         }
     }
