@@ -73,7 +73,6 @@ namespace ControleEstoquePTI
                 }
             }
         }
-
         public void Remover() //Método que remove um produto da lista
         {
             bool encontrado = false; // variável que indica se o produto foi encontrado
@@ -139,7 +138,6 @@ namespace ControleEstoquePTI
                 }
             }
         }
-        
         public void Saida() //Método que realiza uma saída de estoque de um produto
         {
             bool encontrado = false; //variável que indica se o produto foi encontrado
