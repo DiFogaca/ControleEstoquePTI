@@ -10,7 +10,6 @@ namespace ControleEstoquePTI
         {
             Menu();
         }
-
         static void Menu()
         {
             Estoque estoque = new Estoque(); //cria um objeto da classe Estoque
