@@ -42,7 +42,11 @@ namespace ControleEstoquePTI
         }
         public override string ToString()
         {
-            return $"Título: {this.Titulo}, Autor(a): {this.Autor}, Editora: {this.Editora}, Gênero: {this.Genero}, Preço: ({this.Preco.ToString("C", new CultureInfo("pt-BR"))}) - {this.Estoque} em Estoque.";
+            //O primeiro return é  do método simples
+            //return $"Título: {this.Titulo}, Autor(a): {this.Autor}, Editora: {this.Editora}, Gênero: {this.Genero}, Preço: ({this.Preco.ToString("C", new CultureInfo("pt-BR"))}) - {this.Estoque} em Estoque.";
+            
+            //Este return é do método de Interpolação
+            return $"{this.Titulo,-10} | {this.Autor,-10} | {this.Editora,-10} | {this.Genero,-10} | {this.Preco.ToString("C", new CultureInfo("pt-BR")),-10} | {this.Estoque,-10} |";
         }
     }
 

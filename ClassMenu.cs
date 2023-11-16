@@ -15,22 +15,27 @@ namespace ControleEstoquePTI
 
             do //repete até que a opção seja zero
             {
-                int numTracos = 22; //Definindo a quantidade de traços para as bordas do programa
+                int numTracos = 23; //Definindo a quantidade de traços para as bordas do programa
                 string bordaCima = ""; //borda de cima
                 string bordaBaixo = ""; //borda de baixo
                 for (int i = 0; i < numTracos; i++)
                 {
                     bordaCima += "-";
-                    bordaBaixo += "_";
+                    bordaBaixo += "-";
                 }
-                Console.WriteLine($"--- LIVRARIA DOS LIVROS - CONTROLE DE ESTOQUE ---\n{bordaCima}");
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("--- LIVRARIA DOS LIVROS - CONTROLE DE ESTOQUE ---\n");
+                Console.ResetColor();
+                Console.WriteLine($"{bordaCima}");
                 //Apresenta o menu
                 Console.WriteLine("[1] Novo              |");
                 Console.WriteLine("[2] Listar Produtos   |");
                 Console.WriteLine("[3] Remover Produtos  |");
                 Console.WriteLine("[4] Entrada Estoque   |");
                 Console.WriteLine("[5] Saída Estoque     |");
-                Console.WriteLine($"[0] Sair              |\n{bordaBaixo}" + "|");
+                Console.WriteLine($"[0] Sair              |");
+                Console.WriteLine($"{bordaCima}");
                 Console.Write("Escolha uma opção: ");   //usuário insere a opção desejada
                 opcao = Console.ReadLine(); //programa lê a opção digitada
                 switch (opcao) //executa a ação de acordo com a opção

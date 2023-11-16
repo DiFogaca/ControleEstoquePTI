@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ControleEstoquePTI.Program;
-
-namespace ControleEstoquePTI
+﻿namespace ControleEstoquePTI
 {
     internal class Estoque
     {
@@ -30,7 +23,7 @@ namespace ControleEstoquePTI
             bool precoValido = false;
             while (!precoValido)
             {
-                Console.Write("Preço: ");
+                Console.Write("Preço (R$): ");
                 precoValido = double.TryParse(Console.ReadLine(), out preco);
                 if (!precoValido)
                 {
@@ -42,7 +35,7 @@ namespace ControleEstoquePTI
             bool estoqueValido = false;
             while (!estoqueValido)
             {
-                Console.Write("Estoque: ");
+                Console.Write("Qtde. Estoque: ");
                 estoqueValido = int.TryParse(Console.ReadLine(), out estoque);
                 if (!estoqueValido)
                 {
@@ -53,7 +46,58 @@ namespace ControleEstoquePTI
             this.produtos.Add(livro); //adiciona o objeto à lista
             Console.WriteLine("\nProduto cadastrado com sucesso!\n");
         }
-        public void Listar()
+
+        //public void Listar()//Metodo de apresentação em Matriz
+        //{
+        //    if (this.produtos.Count == 0)
+        //    {
+        //        Console.WriteLine("\nNão há produtos cadastrados.\n");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"\nProdutos cadastrados: {this.produtos.Count}\n");
+        //        // Criar uma matriz de strings com o número de linhas igual ao número de livros mais um (para o cabeçalho) e o número de colunas igual a sete (para os campos dos livros)
+        //        string[,] matriz = new string[this.produtos.Count + 1, 7];
+        //        // Preencher a primeira linha da matriz com os títulos das colunas
+        //        matriz[0, 0] = "ID";
+        //        matriz[0, 1] = "Título";
+        //        matriz[0, 2] = "Autor";
+        //        matriz[0, 3] = "Editora";
+        //        matriz[0, 4] = "Genero";
+        //        matriz[0, 5] = "Preço (R$)";
+        //        matriz[0, 6] = "Estoque";
+        //        // Adicionando um contador
+        //        int contador = 1;
+        //        // Preencher as demais linhas da matriz com os dados dos livros
+        //        foreach (Livro livro in this.produtos)
+        //        {
+        //            matriz[contador, 0] = contador.ToString(); // Usar o contador para gerar o ID do livro
+        //            matriz[contador, 1] = livro.Titulo;
+        //            matriz[contador, 2] = livro.Autor;
+        //            matriz[contador, 3] = livro.Editora;
+        //            matriz[contador, 4] = livro.Genero;
+        //            matriz[contador, 5] = livro.Preco.ToString("C", new CultureInfo("pt-BR"));
+        //            matriz[contador, 6] = livro.Estoque.ToString();
+        //            contador++; // Incrementar o contador após cada iteração do loop
+        //        }
+        //        // Escrever o cabeçalho da tabela
+        //        Console.WriteLine(String.Format("{0,-10} | {1,-10} | {2,-10} | {3,-10} | {4,-10} | {5,-10} | {6,-10} |", matriz[0, 0], matriz[0, 1], matriz[0, 2], matriz[0, 3], matriz[0, 4], matriz[0, 5], matriz[0, 6]));
+        //        Console.WriteLine(new string('-', 85)); // Escrever uma linha separadora
+        //                                                // Escrever os dados da tabela
+        //        for (int j = 1; j < matriz.GetLength(0); j++) // Percorrer as linhas da matriz, começando da segunda
+        //        {
+        //            for (int k = 0; k < matriz.GetLength(1); k++) // Percorrer as colunas da matriz
+        //            {
+        //                // Escrever cada elemento da matriz no console, usando o método String.PadRight para alinhar as colunas à esquerda e adicionando um caractere | entre as colunas
+        //                Console.Write(matriz[j, k].PadRight(10, ' ') + "|");
+        //            }
+        //            Console.WriteLine(); // Escrever uma linha em branco
+        //        }
+        //    }
+        //}
+
+
+        public void Listar() // Usando cadeia de Caracteres Interpolada
         {
             if (this.produtos.Count == 0)
             {
@@ -62,17 +106,47 @@ namespace ControleEstoquePTI
             else
             {
                 Console.WriteLine($"\nProdutos cadastrados: {this.produtos.Count}\n");
+               
+                int contador = 1;  // Adicionando um contador
+                //Console.WriteLine($"{contador}. {livro}\n");
 
-                // Adicionando um contador
-                int contador = 1;
+                // Escrever o cabeçalho da tabela
+                Console.BackgroundColor = ConsoleColor.Gray;
+                Console.ForegroundColor = ConsoleColor.Black;
 
-                foreach (Livro livro in this.produtos)
+                Console.WriteLine($"{"ID",-5} | {"Título",-10} | {"Autor",-10} | {"Editora",-10} | {"Genero",-10} | {"Preço (R$)",-10} | {"Estoque",-10} |");
+                
+                Console.ResetColor();
+                    
+                Console.WriteLine(new string('-', 85)); // Escrever uma linha separadora
+                
+                foreach (Livro livro in this.produtos) // Escrever os dados da tabela
                 {
-                    Console.WriteLine($"{contador}. {livro}\n");
+                    Console.WriteLine($"{contador,-5} | {livro}");
                     contador++;
                 }
             }
+                Console.WriteLine(); // Escrever uma linha em branco
         }
+
+        //public void Listar() //primeiro método
+        //{
+        //    if (this.produtos.Count == 0)
+        //    {
+        //        Console.WriteLine("\nNão há produtos cadastrados.\n");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine($"\nProdutos cadastrados: {this.produtos.Count}\n");
+        //        // Adicionando um contador
+        //        int contador = 1;
+        //        foreach (Livro livro in this.produtos)
+        //        {
+        //            Console.WriteLine($"{contador}. {livro}\n");
+        //            contador++;
+        //        }
+        //    }
+        //}
         public void Remover() //Método que remove um produto da lista
         {
             bool encontrado = false; // variável que indica se o produto foi encontrado
